@@ -12,4 +12,8 @@
  */
 
 Route::get('/', 'SiteController@index');
-Route::resource('/alunos', 'AlunoController');
+Route::resource('aluno', 'AlunoController');
+Route::get('disciplina/cadastrar', 'DisciplinaController@create');
+Route::resource('disciplina', 'DisciplinaController');
+Route::resource('disciplina/deletar/{id}', 'DisciplinaController@deletar');
+

@@ -1,13 +1,9 @@
-<html>
-    <head>
-        <title></title>
-    </head>
+@extends('templates.template')
 
-    <body>
-        @foreach($alunos as $aluno)
-        {{$aluno->matricula}}
-        {{$aluno->nome}}
-        @endforeach
+@section('content')
+@foreach($alunos as $aluno)
+{{$aluno->matricula}}
+{{$aluno->nome}}
+@endforeach
 
-    </body>
-</html>
+

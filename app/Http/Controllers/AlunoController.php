@@ -9,10 +9,14 @@ class AlunoController extends Controller {
 
     public function index(Aluno $aluno) {
         $alunos = $aluno->all();
-        return view('aluno.index', compact('alunos'));
+        $title = 'Pagina Aluno';
+        return view('aluno.index', compact('alunos','title'));
     }
 
     public function create() {
+       
+    }
+    public function update() {
        
     }
 
