@@ -13,7 +13,7 @@ class TipoNota extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_nota', function (Blueprint $table) {
+        Schema::create('tipo_notas', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class TipoNota extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_nota');
+        Schema::dropIfExists('tipo_notas');
     }
 }

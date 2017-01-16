@@ -12,7 +12,7 @@ class Familia extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('familia', function (Blueprint $table) {
+        Schema::create('familias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome_pai');
             $table->string('nome_mae');
@@ -54,7 +54,7 @@ class Familia extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('familia');
+        Schema::dropIfExists('familias');
     }
 
 }

@@ -12,15 +12,15 @@ class Contrato extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('contrato', function (Blueprint $table) {
+        Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_contrato');
             $table->integer('id_contratante');
             $table->string('matricula_aluno');
             $table->date('data_contrato');
             $table->date('data_renovacao');
-            $table->foreign('matricula_aluno')->references('matricula')->on('aluno')->onDelete('cascade');
-            $table->foreign('id_contratante')->references('id')->on('contratante')->onDelete('cascade');
+            $table->foreign('matricula_aluno')->references('matricula')->on('alunos')->onDelete('cascade');
+            $table->foreign('id_contratante')->references('id')->on('contratantes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,7 +31,7 @@ class Contrato extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('contrato');
+        Schema::dropIfExists('contratos');
     }
 
 }

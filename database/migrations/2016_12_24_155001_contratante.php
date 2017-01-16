@@ -12,7 +12,7 @@ class Contratante extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('contratante', function (Blueprint $table) {
+        Schema::create('contratantes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->string('filiacao');
@@ -44,7 +44,7 @@ class Contratante extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('contratante');
+        Schema::dropIfExists('contratantes');
     }
 
 }

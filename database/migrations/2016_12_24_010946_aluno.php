@@ -13,7 +13,7 @@ class Aluno extends Migration {
      */
     public function up() {
 
-        Schema::create('aluno', function (Blueprint $table) {
+        Schema::create('alunos', function (Blueprint $table) {
             $table->string('matricula', 20)->unique()->primary();
             $table->integer('id_familia');
             $table->string('nome', 300);
@@ -35,7 +35,7 @@ class Aluno extends Migration {
             $table->string('rua');
             $table->string('status');
             $table->string('telefone');
-            $table->foreign('id_familia')->references('id')->on('familia');
+            $table->foreign('id_familia')->references('id')->on('familias');
             $table->timestamps();
         });
     }
@@ -46,7 +46,7 @@ class Aluno extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('aluno');
+        Schema::dropIfExists('alunos');
     }
 
 }

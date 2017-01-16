@@ -12,14 +12,14 @@ class Horario extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('horario', function (Blueprint $table) {
+        Schema::create('horarios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_disciplina');
             $table->integer('id_serie');
             $table->integer('id_professor');
-            $table->foreign('id_disciplina')->references('id')->on('disciplina');
-            $table->foreign('id_serie')->references('id')->on('serie');
-            $table->foreign('id_professor')->references('id')->on('professor');
+            $table->foreign('id_disciplina')->references('id')->on('disciplinas');
+            $table->foreign('id_serie')->references('id')->on('series');
+            $table->foreign('id_professor')->references('id')->on('professors');
 
             $table->timestamps();
         });
@@ -31,7 +31,7 @@ class Horario extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('horario');
+        Schema::dropIfExists('horarios');
     }
 
 }

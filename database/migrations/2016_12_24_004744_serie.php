@@ -13,7 +13,7 @@ class Serie extends Migration {
      */
     public function up() {
         self::down();
-        Schema::create('serie', function (Blueprint $table) {
+        Schema::create('series', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao', 20);
             $table->timestamps();
@@ -26,7 +26,7 @@ class Serie extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('serie');
+        Schema::dropIfExists('series');
     }
 
 }

@@ -13,13 +13,13 @@ class AlunoSerie extends Migration {
      */
     public function up() {
         self::down();
-        Schema::create('aluno_serie', function (Blueprint $table) {
+        Schema::create('aluno_series', function (Blueprint $table) {
             $table->string('matricula_aluno', 20);
             $table->integer('id_serie');
             $table->string('turno',10);
             $table->string('ano',4);
-            $table->foreign('matricula_aluno')->references('matricula')->on('aluno')->onDelete('cascade');
-            $table->foreign('id_serie')->references('id')->on('serie')->onDelete('cascade');
+            $table->foreign('matricula_aluno')->references('matricula')->on('alunos')->onDelete('cascade');
+            $table->foreign('id_serie')->references('id')->on('series')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,7 +30,7 @@ class AlunoSerie extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('aluno_serie');
+        Schema::dropIfExists('aluno_series');
     }
 
 }

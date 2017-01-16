@@ -12,7 +12,7 @@ class Professor extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('professor', function (Blueprint $table) {
+        Schema::create('professors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');             $table->string('cpf')->unique();
             $table->string('bairro');           $table->string('citade');
@@ -39,7 +39,7 @@ class Professor extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('professor');
+        Schema::dropIfExists('professors');
     }
 
 }

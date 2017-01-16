@@ -13,7 +13,7 @@ class Nota extends Migration
      */
     public function up()
     {
-        Schema::create('nota', function (Blueprint $table) {
+        Schema::create('notas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_nota');
             $table->string('valor')->default(' ');
@@ -28,6 +28,6 @@ class Nota extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nota');
+        Schema::dropIfExists('notas');
     }
 }

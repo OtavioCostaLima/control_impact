@@ -12,7 +12,7 @@ class Disciplina extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('disciplina', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao', 20);
             $table->string('tipo', 20);
@@ -26,7 +26,7 @@ class Disciplina extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('disciplina');
+        Schema::dropIfExists('disciplinas');
     }
 
 }
