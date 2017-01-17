@@ -53,10 +53,9 @@ class DisciplinaController extends Controller {
     }
 
     public function update(Request $request, $id) {
-        $dados = request()->except('_token','_method');
-        $disciplina = $this->disciplina->find($id);
-        $update = $disciplina->update($dados);
-        if ($update) {
+        $dados = request()->except('_token', '_method');
+        $disc = $this->disciplina->find($id);
+        if ($disc->update($dados)) {
             return redirect('disciplina');
         } else {
             return redirect('disciplina.edit');

@@ -14,6 +14,9 @@
 Route::get('/', 'SiteController@index');
 Route::resource('disciplina', 'DisciplinaController');
 Route::resource('professor', 'ProfessorController');
-
+Route::get('painel', function (){
+    return view('painel.index');
+    
+});
 //Route::resource('disciplina/edit/{id}', 'DisciplinaController');
 //Route::resource('disciplina/show/{id}', 'DisciplinaController');
