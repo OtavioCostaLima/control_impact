@@ -20,7 +20,9 @@ class DisciplinaController extends Controller {
     }
 
     public function create() {
-        return view('/disciplina.create');
+        $title = 'Pagina Cadastro';
+        $tipos = ['Reprova', 'Não Reprova'];
+        return view('disciplina.create', compact('tipos', 'title'));
     }
 
     public function store(Request $request) {
@@ -34,12 +36,30 @@ class DisciplinaController extends Controller {
         }
     }
 
-    public function deletar($id) {
+    public function show($id) {
 
         $dis = $this->disciplina->find($id);
         $delete = $dis->delete();
         if ($delete) {
             return redirect()->route('disciplina.index');
+        }
+    }
+
+    public function edit($id) {
+        $disciplina = $this->disciplina->find($id);
+        $title = "Editar: {{$disciplina->descricao}}";
+        $tipos = ['Reprova', 'Não Reprova'];
+        return view('disciplina.create', compact('disciplina', 'title', 'tipos'));
+    }
+
+    public function update(Request $request, $id) {
+        $dados = request()->except('_token','_method');
+        $disciplina = $this->disciplina->find($id);
+        $update = $disciplina->update($dados);
+        if ($update) {
+            return redirect('disciplina');
+        } else {
+            return redirect('disciplina.edit');
         }
     }
 
