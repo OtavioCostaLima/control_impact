@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Disciplina extends Model {
 
     protected $fillable = ['descricao', 'tipo'];
+    public $timestamps = true;
 
 }

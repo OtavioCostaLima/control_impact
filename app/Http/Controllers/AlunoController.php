@@ -7,17 +7,24 @@ use App\Aluno;
 
 class AlunoController extends Controller {
 
-    public function index(Aluno $aluno) {
-        $alunos = $aluno->all();
+    private $aluno;
+
+    function __construct(Aluno $aluno) {
+        $this->aluno = $aluno;
+    }
+
+    public function index() {
+        $alunos = $this->aluno->all();
         $title = 'Pagina Aluno';
-        return view('aluno.index', compact('alunos','title'));
+        return view('aluno.index', compact('alunos', 'title'));
     }
 
     public function create() {
-       
+        
     }
+
     public function update() {
-       
+        
     }
 
 }

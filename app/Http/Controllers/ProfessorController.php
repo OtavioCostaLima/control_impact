@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Professor;
 
-class ProfessorController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-    return view('/professor.create');
+class ProfessorController extends Controller {
+
+    private $professor;
+
+    function __construct(Professor $professor) {
+        $this->professor = $professor;
+    }
+
+    public function index() {
+        $professores = $this->professor->all();
+        return view('professor.index', compact('professores'));
     }
 
     /**
@@ -21,9 +23,9 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        $title = 'Cadastro Professor';
+        return view('professor.create', compact('title'));
     }
 
     /**
@@ -32,9 +34,15 @@ class ProfessorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $dados = $request->except('_token');
+        $insert = $this->professor->insert($dados);
+
+        if ($insert) {
+            return redirect()->route('professor.index');
+        } else {
+            return redirect()->route('professor.store');
+        }
     }
 
     /**
@@ -43,8 +51,7 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -54,8 +61,7 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -66,8 +72,7 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -77,8 +82,15 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
+    public function retornarTurmas() {
+        $this->professor('horarios')->join('turmas', function ($join) {
+                    $join->on('horarios.id_professor', '=', 'professor.id');
+                })
+                ->get();
+    }
+
 }

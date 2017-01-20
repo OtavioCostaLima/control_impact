@@ -11,12 +11,14 @@
   |
  */
 
-Route::get('/', 'SiteController@index');
 Route::resource('disciplina', 'DisciplinaController');
 Route::resource('professor', 'ProfessorController');
-Route::get('painel', function (){
+Route::resource('aluno', 'AlunoController');
+Route::get('administrador/painel', function () {
+    return view('painel.administrador');
+});
+Route::get('/', function () {
     return view('painel.index');
-    
 });
 //Route::resource('disciplina/edit/{id}', 'DisciplinaController');
 //Route::resource('disciplina/show/{id}', 'DisciplinaController');

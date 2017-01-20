@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Horario extends Migration {
+class CreateTurmasTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,15 +12,16 @@ class Horario extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('horarios', function (Blueprint $table) {
+        Schema::create('turmas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_disciplina');
+            $table->string('matricula_aluno');
             $table->integer('id_serie');
-            $table->integer('id_professor');
-            $table->foreign('id_disciplina')->references('id')->on('disciplinas');
+            $table->string('descricao');
+            $table->integer('turno');
+            $table->string('ano');
+            $table->string('numero_chamada');
+            $table->foreign('matricula_aluno')->references('matricula')->on('alunos');
             $table->foreign('id_serie')->references('id')->on('series');
-            $table->foreign('id_professor')->references('id')->on('professors');
-
             $table->timestamps();
         });
     }
@@ -31,7 +32,7 @@ class Horario extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('horarios');
+        Schema::dropIfExists('turmas');
     }
 
 }
