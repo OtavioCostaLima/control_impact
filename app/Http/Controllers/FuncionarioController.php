@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Professor;
+use App\Models\Funcionario;
 
-class ProfessorController extends Controller {
+class FuncionarioController extends Controller {
 
-    private $professor;
+    private $funcionario;
 
-    function __construct(Professor $professor) {
-        $this->professor = $professor;
+    function __construct(Funcionario $funcionario) {
+        $this->funcionario = $funcionario;
     }
 
     public function index() {
-        $professores = $this->professor->all();
-        return view('professor.index', compact('professores'));
+        $title = 'Pagina Funcionario';
+        $funcionarios = $this->funcionario->all();
+        return view('funcionario.index', compact('funcionarios', 'title'));
     }
 
     /**
@@ -24,8 +25,7 @@ class ProfessorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $title = 'Cadastro Professor';
-        return view('professor.create', compact('title'));
+        //
     }
 
     /**
@@ -36,12 +36,12 @@ class ProfessorController extends Controller {
      */
     public function store(Request $request) {
         $dados = $request->except('_token');
-        $insert = $this->professor->insert($dados);
+        $insert = $this->funcionario->insert($dados);
 
         if ($insert) {
-            return redirect()->route('professor.index');
+            return redirect()->route('funcionario.index');
         } else {
-            return redirect()->route('professor.store');
+            return redirect()->route('funcionario.store');
         }
     }
 
@@ -52,7 +52,11 @@ class ProfessorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        $funcionario = $this->funcionario->find($id);
+        $delete = $funcionario->delete();
+        if ($delete) {
+            return redirect()->route('funcionario.index');
+        }
     }
 
     /**
@@ -73,7 +77,13 @@ class ProfessorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $dados = request()->except('_token', '_method');
+        $func = $this->funcionario->find($id);
+        if ($func->update($dados)) {
+            return redirect('funcionario');
+        } else {
+            return redirect('funcionario.edit');
+        }
     }
 
     /**
@@ -84,13 +94,6 @@ class ProfessorController extends Controller {
      */
     public function destroy($id) {
         //
-    }
-
-    public function retornarTurmas() {
-        $this->professor('horarios')->join('turmas', function ($join) {
-                    $join->on('horarios.id_professor', '=', 'professor.id');
-                })
-                ->get();
     }
 
 }

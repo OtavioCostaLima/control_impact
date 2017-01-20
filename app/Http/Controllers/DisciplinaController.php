@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Disciplina;
+use App\Models\Disciplina;
 
 class DisciplinaController extends Controller {
 

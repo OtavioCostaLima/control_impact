@@ -14,6 +14,11 @@
 Route::resource('disciplina', 'DisciplinaController');
 Route::resource('professor', 'ProfessorController');
 Route::resource('aluno', 'AlunoController');
+Route::resource('funcionario', 'FuncionarioController');
+
+Route::get('administrador/painel', function () {
+    return view('painel.administrador');
+});
 Route::get('administrador/painel', function () {
     return view('painel.administrador');
 });
