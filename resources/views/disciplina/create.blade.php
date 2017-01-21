@@ -12,15 +12,7 @@
 </div>
 <div class="form-group col-lg-6">
     <label>Tipo</label>
-    <select class="form-control col-lg-6" name="tipo" required="">
-        <option value="">Selecione um tipo</option>
-        @foreach($tipos as $tipo)
-        <option value="{{$tipo}}" @if(isset($disciplina) && $disciplina->tipo==$tipo) 
-                selected  @endif>           
-                {{$tipo}}
-    </option>
-    @endforeach
-</select>
+    {!! Form::select('tipo', $tipos,null,['class'=>'form-control col-lg-6','required'=>""])!!}
 </div>
 <div class="form-group col-lg-12">
     {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!} 

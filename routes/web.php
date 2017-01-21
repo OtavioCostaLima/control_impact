@@ -27,3 +27,7 @@ Route::get('/', function () {
 });
 //Route::resource('disciplina/edit/{id}', 'DisciplinaController');
 //Route::resource('disciplina/show/{id}', 'DisciplinaController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

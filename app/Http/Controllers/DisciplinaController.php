@@ -21,13 +21,13 @@ class DisciplinaController extends Controller {
 
     public function create() {
         $title = 'Pagina Cadastro';
-        $tipos = ['Reprova', 'Não Reprova'];
+        $tipos = ['Reprova'=>'Reprova', 'Não Reprova'=>'Não Reprova'];
         return view('disciplina.create', compact('tipos', 'title'));
     }
 
     public function store(Request $request) {
         $dados = $request->except('_token');
-        $insert = $this->disciplina->insert($dados);
+        $insert = $this->disciplina->create($dados);
 
         if ($insert) {
             return redirect()->route('disciplina.index');
@@ -46,7 +46,7 @@ class DisciplinaController extends Controller {
     }
 
     public function edit($id) {
-        $tipos = ['Reprova', 'Não Reprova'];
+      $tipos = ['Reprova'=>'Reprova', 'Não Reprova'=>'Não Reprova'];
         $disciplina = $this->disciplina->find($id);
         $title = "Editar: {{$disciplina->descricao}}";
         return view('disciplina.create', compact('disciplina', 'title', 'tipos'));
