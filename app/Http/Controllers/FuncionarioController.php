@@ -25,7 +25,9 @@ class FuncionarioController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        $title = 'Funcionario Cadastro';
+
+        return view('funcionario.create', compact('title'));
     }
 
     /**

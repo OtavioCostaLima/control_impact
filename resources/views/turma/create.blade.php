@@ -5,11 +5,7 @@
     {!!Form::open('route'=>'funcionario.store') !!}
     <div class="form-group col-lg-6">
         <label>Nome Turma</label>
-        {!! Form::text('descricao',null,['classe'=>'form-control col-lg-6','placeholder'=>'EX: 1° ANO']);!!}
-    </div>
-    <div class="form-group col-lg-6">
-        <label>Sigla</label>
-        <input class="form-control col-lg-6" placeholder="Ex: A" name="sigla" required="">
+        {!! Form::text('descricao',null,['classe'=>'form-control col-lg-6','placeholder'=>'EX: 1° ANO'])!!}
     </div>
     <div class="form-group col-lg-6">
         <label>Ano</label>
@@ -18,16 +14,12 @@
 
     <div class="form-group col-lg-6">
         <label>Turno</label>
-        <select class="form-control col-lg-6" name="turno" required>
-            <option value="" selected="disabled" >escolher</option>  
-            <option value="Manhã">Manhã</option>
-            <option value="Tarde">Tarde</option>
-            <option value="Noite">Noite</option>
-        </select>
+        {!!Form::select('turno',['Manhã'=>'Manhã','Tarde'=>'Tarde','Noite'=>'Noite'])!!}
     </div>
 
     <div class="form-group col-lg-12">
         <input type="submit" class="btn btn-primary" name="cadastrar" value="cadastrar">
+        {!!Form::submit('Cadastrar',['class'=>'btn btn-primary']) !!}
     </div>
 </form>
 

@@ -46,9 +46,9 @@ class DisciplinaController extends Controller {
     }
 
     public function edit($id) {
-        $title = "Editar: {{$disciplina->descricao}}";
         $tipos = ['Reprova', 'Não Reprova'];
         $disciplina = $this->disciplina->find($id);
+        $title = "Editar: {{$disciplina->descricao}}";
         return view('disciplina.create', compact('disciplina', 'title', 'tipos'));
     }
 

@@ -2,7 +2,11 @@
 
 @section('content')
 
+@if(isset($funcionario))
+{!! Form::model($funcionario,['route'=>['funcionario.update', $funcionario->id],'class'=>'form','method'=>'put'])!!}
+@else
 {!!Form::open(['route' =>'funcionario.store'])!!}
+@endif
 <div class="container"> 
     <!--formulário aluno-->
     <div class="form-group col-md-8">
@@ -26,29 +30,29 @@
             {!!Form::date('data_nascimento',null,['class'=>'form-control col-md-6'])!!}
         </div>
     </div>
-    <div class="form-group col-lg-4">
+     <div class="form-group col-lg-4">
         <label class="control-label">CPF</label>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="CPF" aria-describedby="basic-addon1" name="cpf" value="" id="cpf">
+            {!!Form::text('cpf',null,['class'=>'form-control col-md-6','placeholder'=>'CPF'])!!}
         </div>
     </div>
     <div class="form-group col-lg-4">
         <label class="control-label">Grau</label>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Grau" aria-describedby="basic-addon1" name="grau" value="">
+            {!!Form::text('grau',null,['class'=>'form-control','placeholder'=>'Grau','aria-describedby'=>'basic-addon1'])!!}
         </div>
     </div>
     <div class="form-group col-lg-4">
         <label class="control-label">Profissão</label>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Profissão" aria-describedby="basic-addon1" name="profissao" value="">
+            {!!Form::text('profissao',null,['class'=>'form-control','placeholder'=>'Profissão','aria-describedby'=>'basic-addon1'])!!}
         </div>
     </div>
 
     <div class="form-group col-lg-4">
         <label class="control-label">Naturalidade</label>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Naturalidade" aria-describedby="basic-addon1" name="naturalidade" value="">
+            {!!Form::text('naturalidade',null,['class'=>'form-control','placeholder'=>'Naturalidade','aria-describedby'=>'basic-addon1'])!!}
         </div>
     </div>
 
@@ -106,7 +110,6 @@
         <label class="control-label">Estado civil</label>
         <div>
             {!!Form::select('civil',['solteira'=>'Solteira','casada'=>'Casada','separada'=>'Separada'],null,['class'=>'form-control'])!!}
-
         </div>
     </div>
 
@@ -114,12 +117,13 @@
         <label class="control-label">Endereço</label>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Endereço" aria-describedby="basic-addon1" name="endereco" value="">
+
         </div>
     </div>
 
     <div class="form-group col-md-2">
         <label class="control-label">Número</label> 
-        <input name="numero_casa" type="text" class="form-control  pp">
+        {!!Form::text('numero_casa',null,['class'=>'form-control','placeholder'=>'Número'])!!}
     </div>
 
     <div class="form-group col-md-4">
@@ -143,8 +147,9 @@
         <label class="control-label" for="municipio">Cidade</label> 
         <label>Cidade</label> <input name="cidade" type="text" class="form-control  p">
     </div>
-    <div class="form-group col-lg-6">{!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!}</div>
-
+   
+    <div class="form-group col-lg-6">
+        {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!}</div>
     {!!Form::close()!!}
 
 </div>
