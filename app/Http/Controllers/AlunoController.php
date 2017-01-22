@@ -20,7 +20,8 @@ class AlunoController extends Controller {
     }
 
     public function create() {
-        
+        $title = 'Cadastro de Alunos';
+        return view('aluno.create', compact('title'));
     }
 
     public function update() {

@@ -19,8 +19,8 @@ Route::resource('funcionario', 'FuncionarioController');
 Route::get('administrador/painel', function () {
     return view('painel.administrador');
 });
-Route::get('administrador/painel', function () {
-    return view('painel.administrador');
+Route::get('painel', function () {
+    return view('painel.index');
 });
 Route::get('/', function () {
     return view('painel.index');
