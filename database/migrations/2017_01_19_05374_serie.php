@@ -15,9 +15,8 @@ class Serie extends Migration {
         self::down();
         Schema::create('series', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_modalidade');
+            $table->enum('tipo', ['Jardim', 'Fundamental', 'Médio']);
             $table->string('descricao', 20);
-            $table->foreign('id_modalidade')->references('id')->on('modalidades');
             $table->timestamps();
         });
     }

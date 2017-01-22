@@ -12,4 +12,6 @@ class Aluno extends Model {
         return $this->hasMany(Nota::class, 'matricula');
     }
     
+    
+    
     }

@@ -17,7 +17,7 @@ class CreateTurmasTable extends Migration {
             $table->string('matricula_aluno');
             $table->integer('id_serie');
             $table->string('descricao');
-            $table->integer('turno');
+            $table->string('turno');
             $table->string('ano');
             $table->string('numero_chamada');
             $table->foreign('matricula_aluno')->references('matricula')->on('alunos');
