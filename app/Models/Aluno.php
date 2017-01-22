@@ -11,5 +11,5 @@ class Aluno extends Model {
     public function notas(): HasMany {
         return $this->hasMany(Nota::class, 'matricula');
     }
-
-}
+    
+    }

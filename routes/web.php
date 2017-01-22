@@ -12,6 +12,7 @@
  */
 
 Route::resource('disciplina', 'DisciplinaController');
+Route::resource('turma', 'TurmaController');
 Route::resource('professor', 'ProfessorController');
 Route::resource('aluno', 'AlunoController');
 Route::resource('funcionario', 'FuncionarioController');

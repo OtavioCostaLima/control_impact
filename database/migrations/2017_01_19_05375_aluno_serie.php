@@ -16,8 +16,10 @@ class AlunoSerie extends Migration {
         Schema::create('aluno_series', function (Blueprint $table) {
             $table->string('matricula_aluno', 20);
             $table->integer('id_serie');
-            $table->string('turno',10);
-            $table->string('ano',4);
+            $table->string('descricao', 10);
+            $table->string('turno', 10);
+            $table->string('ano', 4);
+            $table->integer('numero_chamada',3);
             $table->foreign('matricula_aluno')->references('matricula')->on('alunos')->onDelete('cascade');
             $table->foreign('id_serie')->references('id')->on('series')->onDelete('cascade');
             $table->timestamps();
