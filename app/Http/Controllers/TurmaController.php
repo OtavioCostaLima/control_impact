@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Turma;
 
 class TurmaController extends Controller {
 
     private $turma;
 
-    function __construct($turma) {
+    function __construct(Turma $turma) {
         $this->turma = $turma;
     }
 
@@ -19,7 +20,7 @@ class TurmaController extends Controller {
      */
     public function index() {
         $title = "Index Turma";
-        $turmas = $this->turma->all(); 
+        $turmas = $this->turma->all();
         return view('turma.index', compact('title', 'turmas'));
     }
 
