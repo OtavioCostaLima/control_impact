@@ -17,5 +17,8 @@
 <div class="form-group col-lg-12">
     {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!} 
 </div>
+
+
+
 {!!Form::close()!!}
 @endsection

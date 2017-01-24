@@ -1,6 +1,7 @@
 const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
+require('laravel-elixir-vueify');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+   
+    mix.styles(['../../../node_modules/bootstrap/css/bootstrap.css'], 'public/css/style.css');
+ 
+   mix.browserife('main.js');
+    
 });

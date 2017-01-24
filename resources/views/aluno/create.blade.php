@@ -1,9 +1,12 @@
 @extends('templates.template')
 
 @section('content')
-<div class="container-fluid">
-<form role="form" method="post" action="cadastro.php" id="formAluno"  data-toggle="validator">
-
+<div class="container">
+    @if(isset($aluno))
+    {!! Form::model($aluno,['route'=>['aluno.update', $aluno->matricula],'class'=>'form','method'=>'put'])!!}
+    @else
+    {!!Form::open(['route'=>'disciplina.store'])!!}
+    @endif
     <h3>Cadastrar Aluno</h3>
     <p>Primeiro Passo</p>
     <ul class="list-inline pull-right">
@@ -13,29 +16,21 @@
                 <label class="control-label">Nome Aluno</label>
                 <div class="input-group">
                     <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="Nome do Aluno" aria-describedby="basic-addon1" name="nome_aluno" required>
+                    {!!Form::text('nome_aluno',null,['class'=>'form-control','placeholder'=>'Nome do Aluno','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
             <div class="form-group col-md-2">
                 <label class="control-label">Sexo</label>
                 <div>
-                    <select name="sexo_aluno" class="form-control" required>
-                        <option value="M">
-                            Masculino
-                        </option>
-
-                        <option value="F">
-                            Feminino
-                        </option>
-                    </select>
+                    {!! Form::select('sexo', ['M' => 'Masculino', 'F' => 'Feminino'],null,['class'=>'form-control'])!!}
                 </div>
             </div>
 
             <div class="form-group col-md-2">
                 <label class="control-label">Data Nascimento</label>
                 <div class="formulario input-group">
-                    <input name="data_nascimento" type="text" class="form-control col-md-6" id="datepicker1" value="" required>
+                    {!!Form::date('data_nascimento',null,['class'=>'form-control col-md-6'])!!}
                 </div>
             </div>
 
@@ -43,14 +38,14 @@
             <div class="form-group col-lg-4">
                 <label class="control-label">Naturalidade</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Naturalidade" aria-describedby="basic-addon1" name="naturalidade_aluno" value="" required>
+                    {!!Form::text('naturalidade',null,['class'=>'form-control','placeholder'=>'Naturalidade','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
             <div class="form-group col-lg-4">
                 <label class="control-label">Nascionalidade</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nascionalidade" aria-describedby="basic-addon1" name="nacionalidade_aluno" value="" required>
+                    {!!Form::text('nacionalidade',null,['class'=>'form-control','placeholder'=>'Nacionalidade','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
@@ -139,125 +134,15 @@
 
             <div class="form-group col-lg-8">
                 <label class="control-label" for="municipio">Cidade</label> 
-                <label>Cidade</label> <input name="cidade_aluno" type="text" class="form-control  p" required> 
+                <label>Cidade</label> 
+                <input name="cidade_aluno" type="text" class="form-control  p" required> 
             </div>
 
 
 
             <div class="form-group col-md-4">
                 <label class="control-label">Estado</label>
-
-                <div>
-                    <select id="municipio" name="estado_aluno" class="form-control" required>
-                        <option value="AC">
-                            Acre
-                        </option>
-
-                        <option value="AL">
-                            Alagoas
-                        </option>
-
-                        <option value="AP">
-                            Amapá
-                        </option>
-
-                        <option value="AM">
-                            Amazonas
-                        </option>
-
-                        <option value="BA">
-                            Bahia
-                        </option>
-
-                        <option value="CE">
-                            Ceará
-                        </option>
-
-                        <option value="DF">
-                            Distrito Federal
-                        </option>
-
-                        <option value="ES">
-                            Espirito Santo
-                        </option>
-
-                        <option value="GO">
-                            Goiás
-                        </option>
-
-                        <option value="MA">
-                            Maranhão
-                        </option>
-
-                        <option value="MS">
-                            Mato Grosso do Sul
-                        </option>
-
-                        <option value="MT">
-                            Mato Grosso
-                        </option>
-
-                        <option value="MG">
-                            Minas Gerais
-                        </option>
-
-                        <option value="PA">
-                            Pará
-                        </option>
-
-                        <option value="PB">
-                            Paraíba
-                        </option>
-
-                        <option value="PR">
-                            Paraná
-                        </option>
-
-                        <option value="PE">
-                            Pernambuco
-                        </option>
-
-                        <option value="PI">
-                            Piauí
-                        </option>
-
-                        <option value="RJ">
-                            Rio de Janeiro
-                        </option>
-
-                        <option value="RN">
-                            Rio Grande do Norte
-                        </option>
-
-                        <option value="RS">
-                            Rio Grande do Sul
-                        </option>
-
-                        <option value="RO">
-                            Rondônia
-                        </option>
-
-                        <option value="RR">
-                            Roraima
-                        </option>
-
-                        <option value="SC">
-                            Santa Catarina
-                        </option>
-
-                        <option value="SP">
-                            São Paulo
-                        </option>
-
-                        <option value="SE">
-                            Sergipe
-                        </option>
-
-                        <option value="TO">
-                            Tocantins
-                        </option>
-                    </select>
-                </div>
+                {!!Form::select('estado',['AC'=>'Acre','AL'=>'Alagoas','AP'=>'Amapá','AM'=>'Amazonas','BA'=>'Bahia','CE'=>'Ceará','DF'=>'DistritoFederal','ES'=>'EspiritoSanto','GO'=>'Goiás','MA'=>'Maranhão','MS'=>'MatoGrossodoSul','MT'=>'MatoGrosso','MG'=>'MinasGerais','PA'=>'Pará','PB'=>'Paraíba','PR'=>'Paraná','PE'=>'Pernambuco','PI'=>'Piauí','RJ'=>'RiodeJaneiro','RN'=>'RioGrandedoNorte','RS'=>'RioGrandedoSul','RO'=>'Rondônia','RR'=>'Roraima','SC'=>'SantaCatarina','SP'=>'SãoPaulo','SE'=>'Sergipe','TO'=>'Tocantins'],null,['class'=>'form-control'])!!}
             </div>
         </div>
         <!--fim formulário aluno-->
@@ -273,28 +158,14 @@
                 <label class="control-label">Mãe</label>
                 <div class="input-group">
                     <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="Mãe" aria-describedby="basic-addon1" name="nome_mae" value="" required>
+                    {!!Form::text('nome_mae',null,['class'=>'form-control','placeholder'=>'Mãe','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
             <div class="form-group col-md-4">
                 <label class="control-label">Estado civil</label>
                 <div>
-                    <select name="civil_mae" class="form-control" required>
-                        <option value="solteira">
-                            Solteira
-                        </option>
-
-                        <option value="casada">
-                            Casada
-                        </option>
-                        <option value="separada">
-                            Separada  
-                        </option>
-                        <option value="separada">
-                            Viúva  
-                        </option>
-                    </select>
+                    {!!Form::select('civil',['solteira'=>'Solteira','casada'=>'Casada','separada'=>'Separada'],null,['class'=>'form-control'])!!}
                 </div>
             </div>
 
@@ -302,33 +173,33 @@
             <div class="form-group col-lg-4">
                 <label class="control-label">Naturalidade</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Naturalidade" aria-describedby="basic-addon1" name="naturalidade_mae" value="" required>
+                    {!!Form::text('naturalidade',null,['class'=>'form-control','placeholder'=>'Naturalidade','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
             <div class="form-group col-lg-4">
                 <label class="control-label">Nascionalidade</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nascionalidade" aria-describedby="basic-addon1" name="nacionalidade_mae" value="" required>
+                    {!!Form::text('nacionalidade_mae',null,['class'=>'form-control','placeholder'=>'Nascionalidade','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
             <div class="form-group col-lg-4">
                 <label class="control-label">CPF</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="CPF" aria-describedby="basic-addon1" name="cpf_mae" value="" id="cpf" required>
+                    {!!Form::text('cpf_mae',null,['class'=>'form-control','placeholder'=>'CPF'])!!}
                 </div>
             </div>
             <div class="form-group col-lg-4">
                 <label class="control-label">Grau</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Grau" aria-describedby="basic-addon1" name="grau_mae" value="" required >
+                    {!!Form::text('grau_mae',null,['class'=>'form-control','placeholder'=>'Grau','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
             <div class="form-group col-lg-4">
                 <label class="control-label">Profissão</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Profissão" aria-describedby="basic-addon1" name="profissao_mae" value="">
+                    {!!Form::text('profissao_mae',null,['class'=>'form-control','placeholder'=>'Profissão','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
@@ -336,7 +207,7 @@
             <div class="form-group col-lg-4">
                 <label class="control-label">Email</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="email_mae" value="">
+                    {!!Form::email('email_pai',null,['class'=>'form-control','placeholder'=>'Email','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
@@ -357,146 +228,39 @@
             <div class="form-group col-lg-6">
                 <label class="control-label">Endereço</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Endereço" aria-describedby="basic-addon1" name="endereco_mae" value="">
+                    {!!Form::text('endereco_responsavel',null,['class'=>'form-control','placeholder'=>'Endereço','aria-describedby'=>'basic-addon1'])!!}
                 </div>
             </div>
 
             <div class="form-group col-md-2">
-                <label class="control-label" for="municipio">Número</label> 
-                <input name="numero_casa_mae" type="text" class="form-control  pp">
+                <label class="control-label" for="">Número</label> 
+                {!!Form::text('numero_casa_responsavel',null,['class'=>'form-control','placeholder'=>'numero_casa_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
+
             </div>
 
             <div class="form-group col-md-4">
-                <label class="control-label" for="municipio">Complemento</label> 
-                <input name="complemento_mae" type="text" class="form-control  m">
+                <label class="control-label" for="">Complemento</label> 
+                {!!Form::text('complemento_responsavel',null,['class'=>'form-control','placeholder'=>'complemento_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
             </div>
 
             <div class="form-group col-md-6">
-                <label class="control-label" for="municipio">Bairro</label> 
-                <label>Bairro</label> <input name="bairro_mae" type="text" class="form-control p">
+                <label class="control-label" for="">Bairro</label> 
+                <label>Bairro</label>
+                {!!Form::text('bairro_responsavel',null,['class'=>'form-control','placeholder'=>'bairro_responsavel','aria-describedby'=>'basic-addon1'])!!}
             </div>
 
             <div class="form-group col-lg-6">
-                <label class="control-label" for="municipio">Cidade</label> 
-                <label>Cidade</label> <input name="cidade_mae" type="text" class="form-control  p">
+                <label class="control-label" for="">Cidade</label> 
+                <label>Cidade</label> 
+                {!!Form::text('cidade_responsavel',null,['class'=>'form-control','placeholder'=>'cidade_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
             </div>
-
-
 
             <div class="form-group col-md-4">
                 <label class="control-label">Estado</label>
-
-                <div>
-                    <select id="municipio" name="estado_mae" class="form-control">
-                        <option value="AC">
-                            Acre
-                        </option>
-
-                        <option value="AL">
-                            Alagoas
-                        </option>
-
-                        <option value="AP">
-                            Amapá
-                        </option>
-
-                        <option value="AM">
-                            Amazonas
-                        </option>
-
-                        <option value="BA">
-                            Bahia
-                        </option>
-
-                        <option value="CE">
-                            Ceará
-                        </option>
-
-                        <option value="DF">
-                            Distrito Federal
-                        </option>
-
-                        <option value="ES">
-                            Espirito Santo
-                        </option>
-
-                        <option value="GO">
-                            Goiás
-                        </option>
-
-                        <option value="MA">
-                            Maranhão
-                        </option>
-
-                        <option value="MS">
-                            Mato Grosso do Sul
-                        </option>
-
-                        <option value="MT">
-                            Mato Grosso
-                        </option>
-
-                        <option value="MG">
-                            Minas Gerais
-                        </option>
-
-                        <option value="PA">
-                            Pará
-                        </option>
-
-                        <option value="PB">
-                            Paraíba
-                        </option>
-
-                        <option value="PR">
-                            Paraná
-                        </option>
-
-                        <option value="PE">
-                            Pernambuco
-                        </option>
-
-                        <option value="PI">
-                            Piauí
-                        </option>
-
-                        <option value="RJ">
-                            Rio de Janeiro
-                        </option>
-
-                        <option value="RN">
-                            Rio Grande do Norte
-                        </option>
-
-                        <option value="RS">
-                            Rio Grande do Sul
-                        </option>
-
-                        <option value="RO">
-                            Rondônia
-                        </option>
-
-                        <option value="RR">
-                            Roraima
-                        </option>
-
-                        <option value="SC">
-                            Santa Catarina
-                        </option>
-
-                        <option value="SP">
-                            São Paulo
-                        </option>
-
-                        <option value="SE">
-                            Sergipe
-                        </option>
-
-                        <option value="TO">
-                            Tocantins
-                        </option>
-                    </select>
-                </div>
+                {!!Form::select('estado',['AC'=>'Acre','AL'=>'Alagoas','AP'=>'Amapá','AM'=>'Amazonas','BA'=>'Bahia','CE'=>'Ceará','DF'=>'DistritoFederal','ES'=>'EspiritoSanto','GO'=>'Goiás','MA'=>'Maranhão','MS'=>'MatoGrossodoSul','MT'=>'MatoGrosso','MG'=>'MinasGerais','PA'=>'Pará','PB'=>'Paraíba','PR'=>'Paraná','PE'=>'Pernambuco','PI'=>'Piauí','RJ'=>'RiodeJaneiro','RN'=>'RioGrandedoNorte','RS'=>'RioGrandedoSul','RO'=>'Rondônia','RR'=>'Roraima','SC'=>'SantaCatarina','SP'=>'SãoPaulo','SE'=>'Sergipe','TO'=>'Tocantins'],null,['class'=>'form-control'])!!}
             </div>
         </div>
 
@@ -513,21 +277,7 @@
                 <div class="form-group col-md-4">
                     <label class="control-label">Estado civil</label>
                     <div>
-                        <select name="civil_pai" class="form-control">
-                            <option value="solteira">
-                                Solteira
-                            </option>
-
-                            <option value="casada">
-                                Casada
-                            </option>
-                            <option value="separada">
-                                Separada  
-                            </option>
-                            <option value="separada">
-                                Viúva  
-                            </option>
-                        </select>
+                        {!!Form::select('civil',['solteira'=>'Solteira','casada'=>'Casada','separada'=>'Separada'],null,['class'=>'form-control'])!!}
                     </div>
                 </div>
 
@@ -535,33 +285,34 @@
                 <div class="form-group col-lg-4">
                     <label class="control-label">Naturalidade</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Naturalidade" aria-describedby="basic-addon1" name="naturalidade_pai" value="">
+                        {!!Form::text('naturalidade',null,['class'=>'form-control','placeholder'=>'Naturalidade','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
                 <div class="form-group col-lg-4">
                     <label class="control-label">Nascionalidade</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nascionalidade" aria-describedby="basic-addon1" name="nacionalidade_pai" value="">
+                        {!!Form::text('nacionalidade_pai',null,['class'=>'form-control','placeholder'=>'Nascionalidade','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
                 <div class="form-group col-lg-4">
                     <label class="control-label">CPF</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="CPF" aria-describedby="basic-addon1" name="cpf_pai" value="" id="cpf">
+                        {!!Form::text('cpf_pai',null,['class'=>'form-control','placeholder'=>'CPF'])!!}
                     </div>
                 </div>
                 <div class="form-group col-lg-4">
                     <label class="control-label">Grau</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Grau" aria-describedby="basic-addon1" name="grau_pai" value="">
+                        {!!Form::text('grau_pai',null,['class'=>'form-control','placeholder'=>'Grau','aria-describedby'=>'basic-addon1'])!!}
+
                     </div>
                 </div>
                 <div class="form-group col-lg-4">
                     <label class="control-label">Profissão</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Profissão" aria-describedby="basic-addon1" name="profissao_pai" value="">
+                        {!!Form::text('profissao_pai',null,['class'=>'form-control','placeholder'=>'Profissão','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
@@ -569,7 +320,7 @@
                 <div class="form-group col-lg-4">
                     <label class="control-label">Email</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="email_pai" value="">
+                        {!!Form::email('email_pai',null,['class'=>'form-control','placeholder'=>'Email','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
@@ -590,146 +341,39 @@
                 <div class="form-group col-lg-6">
                     <label class="control-label">Endereço</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Endereço" aria-describedby="basic-addon1" name="endereco_pai" value="">
+                        {!!Form::text('endereco_responsavel',null,['class'=>'form-control','placeholder'=>'Endereço','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
                 <div class="form-group col-md-2">
-                    <label class="control-label" for="municipio">Número</label> 
-                    <input name="numero_casa_pai" type="text" class="form-control  pp">
+                    <label class="control-label" for="">Número</label> 
+                    {!!Form::text('numero_casa_responsavel',null,['class'=>'form-control','placeholder'=>'numero_casa_responsavel','aria-describedby'=>'basic-addon1'])!!}
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label class="control-label" for="municipio">Complemento</label> 
-                    <input name="complemento_pai" type="text" class="form-control  m">
+                    <label class="control-label" for="">Complemento</label> 
+                    {!!Form::text('complemento_responsavel',null,['class'=>'form-control','placeholder'=>'complemento_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label class="control-label" for="municipio">Bairro</label> 
-                    <label>Bairro</label> <input name="bairro_pai" type="text" class="form-control p">
+                    <label class="control-label" for="">Bairro</label> 
+                    <label>Bairro</label>
+                    {!!Form::text('bairro_responsavel',null,['class'=>'form-control','placeholder'=>'bairro_responsavel','aria-describedby'=>'basic-addon1'])!!}
                 </div>
 
                 <div class="form-group col-lg-6">
-                    <label class="control-label" for="municipio">Cidade</label> 
-                    <label>Cidade</label> <input name="cidade_pai" type="text" class="form-control  p">
+                    <label class="control-label" for="">Cidade</label> 
+                    <label>Cidade</label> 
+                    {!!Form::text('cidade_responsavel',null,['class'=>'form-control','placeholder'=>'cidade_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
                 </div>
 
 
 
                 <div class="form-group col-md-4">
                     <label class="control-label">Estado</label>
-
-                    <div>
-                        <select id="municipio" name="estado_pai" class="form-control">
-                            <option value="AC">
-                                Acre
-                            </option>
-
-                            <option value="AL">
-                                Alagoas
-                            </option>
-
-                            <option value="AP">
-                                Amapá
-                            </option>
-
-                            <option value="AM">
-                                Amazonas
-                            </option>
-
-                            <option value="BA">
-                                Bahia
-                            </option>
-
-                            <option value="CE">
-                                Ceará
-                            </option>
-
-                            <option value="DF">
-                                Distrito Federal
-                            </option>
-
-                            <option value="ES">
-                                Espirito Santo
-                            </option>
-
-                            <option value="GO">
-                                Goiás
-                            </option>
-
-                            <option value="MA">
-                                Maranhão
-                            </option>
-
-                            <option value="MS">
-                                Mato Grosso do Sul
-                            </option>
-
-                            <option value="MT">
-                                Mato Grosso
-                            </option>
-
-                            <option value="MG">
-                                Minas Gerais
-                            </option>
-
-                            <option value="PA">
-                                Pará
-                            </option>
-
-                            <option value="PB">
-                                Paraíba
-                            </option>
-
-                            <option value="PR">
-                                Paraná
-                            </option>
-
-                            <option value="PE">
-                                Pernambuco
-                            </option>
-
-                            <option value="PI">
-                                Piauí
-                            </option>
-
-                            <option value="RJ">
-                                Rio de Janeiro
-                            </option>
-
-                            <option value="RN">
-                                Rio Grande do Norte
-                            </option>
-
-                            <option value="RS">
-                                Rio Grande do Sul
-                            </option>
-
-                            <option value="RO">
-                                Rondônia
-                            </option>
-
-                            <option value="RR">
-                                Roraima
-                            </option>
-
-                            <option value="SC">
-                                Santa Catarina
-                            </option>
-
-                            <option value="SP">
-                                São Paulo
-                            </option>
-
-                            <option value="SE">
-                                Sergipe
-                            </option>
-
-                            <option value="TO">
-                                Tocantins
-                            </option>
-                        </select>
-                    </div>
+                    {!!Form::select('estado',['AC'=>'Acre','AL'=>'Alagoas','AP'=>'Amapá','AM'=>'Amazonas','BA'=>'Bahia','CE'=>'Ceará','DF'=>'DistritoFederal','ES'=>'EspiritoSanto','GO'=>'Goiás','MA'=>'Maranhão','MS'=>'MatoGrossodoSul','MT'=>'MatoGrosso','MG'=>'MinasGerais','PA'=>'Pará','PB'=>'Paraíba','PR'=>'Paraná','PE'=>'Pernambuco','PI'=>'Piauí','RJ'=>'RiodeJaneiro','RN'=>'RioGrandedoNorte','RS'=>'RioGrandedoSul','RO'=>'Rondônia','RR'=>'Roraima','SC'=>'SantaCatarina','SP'=>'SãoPaulo','SE'=>'Sergipe','TO'=>'Tocantins'],null,['class'=>'form-control'])!!}
                 </div>
             </div></div>
         <!--RESPONSAVEL-->
@@ -746,21 +390,7 @@
                 <div class="form-group col-md-4">
                     <label class="control-label">Estado civil</label>
                     <div>
-                        <select name="civil" class="form-control">
-                            <option value="solteira">
-                                Solteira
-                            </option>
-
-                            <option value="casada">
-                                Casada
-                            </option>
-                            <option value="separada">
-                                Separada  
-                            </option>
-                            <option value="separada">
-                                Viúva  
-                            </option>
-                        </select>
+                        {!!Form::select('civil',['solteira'=>'Solteira','casada'=>'Casada','separada'=>'Separada'],null,['class'=>'form-control'])!!}
                     </div>
                 </div>
 
@@ -782,7 +412,7 @@
                 <div class="form-group col-lg-4">
                     <label class="control-label">CPF</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="CPF" aria-describedby="basic-addon1" name="cpf_responsavel" value="" id="cpf">
+                        {!!Form::text('cpf',null,['class'=>'form-control','placeholder'=>'CPF'])!!}
                     </div>
                 </div>
                 <div class="form-group col-lg-4">
@@ -794,7 +424,7 @@
                 <div class="form-group col-lg-4">
                     <label class="control-label">Profissão</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Profissão" aria-describedby="basic-addon1" name="profissao_responsavel" value="">
+                        {!!Form::text('profissao_contratante',null,['class'=>'form-control','placeholder'=>'Profissão','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
@@ -823,150 +453,44 @@
                 <div class="form-group col-lg-6">
                     <label class="control-label">Endereço</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Endereço" aria-describedby="basic-addon1" name="endereco_responsavel" value="">
+                        {!!Form::text('endereco_responsavel',null,['class'=>'form-control','placeholder'=>'Endereço','aria-describedby'=>'basic-addon1'])!!}
                     </div>
                 </div>
 
                 <div class="form-group col-md-2">
-                    <label class="control-label" for="municipio">Número</label> 
-                    <input name="numero_casa_responsavel" type="text" class="form-control  pp">
+                    <label class="control-label" for="">Número</label> 
+                    {!!Form::text('numero_casa_responsavel',null,['class'=>'form-control','placeholder'=>'numero_casa_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
+
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label class="control-label" for="municipio">Complemento</label> 
-                    <input name="complemento_responsavel" type="text" class="form-control  m">
+                    <label class="control-label" for="">Complemento</label> 
+                    {!!Form::text('complemento_responsavel',null,['class'=>'form-control','placeholder'=>'complemento_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label class="control-label" for="municipio">Bairro</label> 
-                    <label>Bairro</label> <input name="bairro_responsavel" type="text" class="form-control p">
+                    <label class="control-label" for="">Bairro</label> 
+                    <label>Bairro</label>
+                    {!!Form::text('bairro_responsavel',null,['class'=>'form-control','placeholder'=>'bairro_responsavel','aria-describedby'=>'basic-addon1'])!!}
                 </div>
 
                 <div class="form-group col-lg-6">
-                    <label class="control-label" for="municipio">Cidade</label> 
-                    <label>Cidade</label> <input name="cidade_responsavel" type="text" class="form-control  p">
+                    <label class="control-label" for="">Cidade</label> 
+                    <label>Cidade</label> 
+                    {!!Form::text('cidade_responsavel',null,['class'=>'form-control','placeholder'=>'cidade_responsavel','aria-describedby'=>'basic-addon1'])!!}
+
                 </div>
-
-
 
                 <div class="form-group col-md-4">
                     <label class="control-label">Estado</label>
-
-                    <div>
-                        <select id="municipio" name="estado_responsavel" class="form-control">
-                            <option value="AC">
-                                Acre
-                            </option>
-
-                            <option value="AL">
-                                Alagoas
-                            </option>
-
-                            <option value="AP">
-                                Amapá
-                            </option>
-
-                            <option value="AM">
-                                Amazonas
-                            </option>
-
-                            <option value="BA">
-                                Bahia
-                            </option>
-
-                            <option value="CE">
-                                Ceará
-                            </option>
-
-                            <option value="DF">
-                                Distrito Federal
-                            </option>
-
-                            <option value="ES">
-                                Espirito Santo
-                            </option>
-
-                            <option value="GO">
-                                Goiás
-                            </option>
-
-                            <option value="MA">
-                                Maranhão
-                            </option>
-
-                            <option value="MS">
-                                Mato Grosso do Sul
-                            </option>
-
-                            <option value="MT">
-                                Mato Grosso
-                            </option>
-
-                            <option value="MG">
-                                Minas Gerais
-                            </option>
-
-                            <option value="PA">
-                                Pará
-                            </option>
-
-                            <option value="PB">
-                                Paraíba
-                            </option>
-
-                            <option value="PR">
-                                Paraná
-                            </option>
-
-                            <option value="PE">
-                                Pernambuco
-                            </option>
-
-                            <option value="PI">
-                                Piauí
-                            </option>
-
-                            <option value="RJ">
-                                Rio de Janeiro
-                            </option>
-
-                            <option value="RN">
-                                Rio Grande do Norte
-                            </option>
-
-                            <option value="RS">
-                                Rio Grande do Sul
-                            </option>
-
-                            <option value="RO">
-                                Rondônia
-                            </option>
-
-                            <option value="RR">
-                                Roraima
-                            </option>
-
-                            <option value="SC">
-                                Santa Catarina
-                            </option>
-
-                            <option value="SP">
-                                São Paulo
-                            </option>
-
-                            <option value="SE">
-                                Sergipe
-                            </option>
-
-                            <option value="TO">
-                                Tocantins
-                            </option>
-                        </select>
-                    </div>
+                    {!!Form::select('estado',['AC'=>'Acre','AL'=>'Alagoas','AP'=>'Amapá','AM'=>'Amazonas','BA'=>'Bahia','CE'=>'Ceará','DF'=>'DistritoFederal','ES'=>'EspiritoSanto','GO'=>'Goiás','MA'=>'Maranhão','MS'=>'MatoGrossodoSul','MT'=>'MatoGrosso','MG'=>'MinasGerais','PA'=>'Pará','PB'=>'Paraíba','PR'=>'Paraná','PE'=>'Pernambuco','PI'=>'Piauí','RJ'=>'RiodeJaneiro','RN'=>'RioGrandedoNorte','RS'=>'RioGrandedoSul','RO'=>'Rondônia','RR'=>'Roraima','SC'=>'SantaCatarina','SP'=>'SãoPaulo','SE'=>'Sergipe','TO'=>'Tocantins'],null,['class'=>'form-control'])!!}
                 </div>
             </div></div><!--FIM FORMULÁRIO RESPONSÁVEL-->
     </ul>
-    <a href="painel-consultar-alunos.php"><button class="btn btn-primary" type="button">Enviar</button></a>  
-</form>
+    <div class="form-group col-lg-6">
+        {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!}</div>
+    {!!Form::close()!!}
 </div>
 @endsection

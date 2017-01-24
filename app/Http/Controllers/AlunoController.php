@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Aluno;
+use App\Models\Familia;
 
 class AlunoController extends Controller {
 
     private $aluno;
+    private $a;
 
-    function __construct(Aluno $aluno) {
+    function __construct(Aluno $aluno, Familia $fam) {
         $this->aluno = $aluno;
+        $this->a = $fam;
     }
 
     public function index() {
+
+      //  var_dump($this->a->find(1)->alunos);
         $alunos = $this->aluno->all();
         $title = 'Pagina Aluno';
         return view('aluno.index', compact('alunos', 'title'));
@@ -26,6 +31,12 @@ class AlunoController extends Controller {
 
     public function update() {
         
+    }
+
+    public function aniversariantes() {
+        $alunos = $this->aluno->all();
+        $this->aluno->whereDate('data_nascimento', '==', date('m-d'));
+        return view('aluno.turma', compact('alunos'));
     }
 
 }

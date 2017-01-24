@@ -12,10 +12,10 @@ class FamiliaSeeder extends Seeder {
      */
     public function run() {
         Familia::create([
-            'nome_pai' => str_random(10),
-            'nome_mae' => str_random(10),
-            'estado_civil_mae' => str_random(10),
-            'estado_civil_pai' => str_random(10),
+            'nome_pai' => 'OLIMPIO BARBOSA LIMA',
+            'nome_mae' => 'APARECIDA SOUSA COSTA',
+            'estado_civil_mae' => 'CASADA',
+            'estado_civil_pai' => 'CASADO',
             'nacionalidade_mae' => str_random(10),
             'nacionalidade_pai' => str_random(10),
             'cpf_mae' => str_random(10),

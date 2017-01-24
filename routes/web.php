@@ -16,6 +16,7 @@ Route::resource('turma', 'TurmaController');
 Route::resource('professor', 'ProfessorController');
 Route::resource('aluno', 'AlunoController');
 Route::resource('funcionario', 'FuncionarioController');
+Route::resource('serie', 'SerieController');
 
 Route::get('administrador/painel', function () {
     return view('painel.administrador');
