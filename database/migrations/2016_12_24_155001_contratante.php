@@ -19,10 +19,12 @@ class Contratante extends Migration {
             $table->string('cpf');
             $table->string('rg');
             $table->string('orgao_expeditor');
-            $table->string('nascionalidade');
-            $table->string('endereco');
+            $table->string('nacionalidade');
+            $table->string('naturalidade');
+            $table->string('rua');
             $table->string('numero');
             $table->string('bairro');
+            $table->string('uf');
             $table->string('cep');
             $table->string('cidade');
             $table->string('telefone');

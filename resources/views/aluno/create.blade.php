@@ -10,27 +10,24 @@
     <h3>Cadastrar Aluno</h3>
     <p>Primeiro Passo</p>
     <ul class="list-inline pull-right">
-        <div class="col-lg-12"> 
+
+        <div class="row"> 
             <!--formulário aluno-->
-            <div class="form-group col-md-8">
-                <label class="control-label">Nome Aluno</label>
-                <div class="input-group">
-                    <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-                    {!!Form::text('nome_aluno',null,['class'=>'form-control','placeholder'=>'Nome do Aluno','aria-describedby'=>'basic-addon1'])!!}
-                </div>
+            <div class="input-field col s8 l8 m8">
+                <i class="material-icons prefix">perm_identity</i>
+                {!!Form::text('nome_aluno',null,['class'=>'validate','aria-describedby'=>'basic-addon1', 'id'=>'nome_aluno'])!!}
+                <label for="nome_aluno">Nome Aluno</label>
             </div>
 
-            <div class="form-group col-md-2">
-                <label class="control-label">Sexo</label>
-                <div>
-                    {!! Form::select('sexo', ['M' => 'Masculino', 'F' => 'Feminino'],null,['class'=>'form-control'])!!}
-                </div>
+            <div class="input-field col s4 l4 m4">
+                {!! Form::select('sexo', ['M' => 'Masculino', 'F' => 'Feminino'],null,['class'=>'input-field','id'=>'sexo_aluno'])!!}
+                <label for="sexo_aluno">Sexo</label>
             </div>
 
             <div class="form-group col-md-2">
                 <label class="control-label">Data Nascimento</label>
                 <div class="formulario input-group">
-                    {!!Form::date('data_nascimento',null,['class'=>'form-control col-md-6'])!!}
+                    {!!Form::text('data_nascimento',null,['class'=>'datepicker'])!!}
                 </div>
             </div>
 
@@ -492,5 +489,19 @@
     <div class="form-group col-lg-6">
         {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!}</div>
     {!!Form::close()!!}
+    <script>$('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });</script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        window.onload = function () {
+            $(document).ready(function () {
+                $('select').material_select();
+            });
+        }//]]> 
+
+    </script>
 </div>
 @endsection

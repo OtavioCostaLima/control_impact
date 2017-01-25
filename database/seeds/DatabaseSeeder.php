@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(AlunoSeeder::class);
         $this->call(SerieSeeder::class);
          $this->call(TurmaSeeder::class);
+         $this->call(ContratanteSeeder::class);
         //$this->call(UsersTableSeeder::class);
     }
 

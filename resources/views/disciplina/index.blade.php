@@ -3,8 +3,7 @@
 @section('content')
 
 <div class="container">
-    <a href="{{route('disciplina.create')}}" class="btn btn-primary">Cadastrar</a>
-    <table class="table table-bordered table-hover text-center">
+    <table class="highlight centered">
         <thead>
             <tr>
                 <th>Disciplina</th>
@@ -18,8 +17,9 @@
                 <td> {{$disciplina->descricao}}</td>
                 <td> {{$disciplina->tipo}}</td>
                 <td> 
-                    <a href="{{route('disciplina.edit',$disciplina->id)}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="{{route('disciplina.show',$disciplina->id)}}"><span class="glyphicon glyphicon-remove"></span></a></td>
+
+                    <a href="{{route('disciplina.edit',$disciplina->id)}}"><span class="material-icons">mode_edit</span></a>
+                    <a href="{{route('disciplina.show',$disciplina->id)}}"><span class="material-icons">delete</span></a></td>
             </tr>
             @endforeach
         </tbody>
@@ -28,5 +28,7 @@
 
 
 
-
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light red" href="{{route('disciplina.create')}}"><i class="material-icons">add</i></a>
+</div>
 @endsection
