@@ -11,7 +11,8 @@
   |
  */
 
-Route::resource('disciplina', 'DisciplinaController');
+Route::get('disciplinas', ['as' => 'disciplinas.index', 'uses' => 'DisciplinaController@index']);
+Route::get('api/disciplinas/listar', ['as' => 'disciplinas.listar', 'uses' => 'DisciplinaController@listar']);
 Route::resource('turma', 'TurmaController');
 Route::resource('professor', 'ProfessorController');
 Route::resource('aluno', 'AlunoController');

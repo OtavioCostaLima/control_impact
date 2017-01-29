@@ -13,16 +13,26 @@ class DisciplinaController extends Controller {
         $this->disciplina = $disciplina;
     }
 
+    public function listar() {
+            $disciplinas = $this->disciplina->all();
+        $response = [
+            'tipos' => [
+                'Reprova' => 'Reprova',
+                'Não Reprova' => 'Não Reprova'
+            ],
+            'data' => $disciplinas
+        ];
+        return response()->json($response);
+    }
+
     public function index() {
-        $disciplinas = $this->disciplina->all();
-        $title = 'Pagina Disciplina';
-        return view('disciplina.index', compact('disciplinas', 'title'));
+        return view('disciplina.index');
     }
 
     public function create() {
         $title = 'Pagina Cadastro';
-        $tipos = ['Reprova'=>'Reprova', 'Não Reprova'=>'Não Reprova'];
-        return view('disciplina.create', compact('tipos', 'title'));
+        $tipos = ['Reprova' => 'Reprova', 'Não Reprova' => 'Não Reprova'];
+        return view('disciplina.index', compact('tipos', 'title'));
     }
 
     public function store(Request $request) {
@@ -46,10 +56,10 @@ class DisciplinaController extends Controller {
     }
 
     public function edit($id) {
-      $tipos = ['Reprova'=>'Reprova', 'Não Reprova'=>'Não Reprova'];
+        $tipos = ['Reprova' => 'Reprova', 'Não Reprova' => 'Não Reprova'];
         $disciplina = $this->disciplina->find($id);
         $title = "Editar: {{$disciplina->descricao}}";
-        return view('disciplina.create', compact('disciplina', 'title', 'tipos'));
+        return redirect()->view('disciplina.index', compact('disciplina', 'title', 'tipos'));
     }
 
     public function update(Request $request, $id) {

@@ -12,21 +12,17 @@
             {!! Form::text('descricao',null,['class'=>'validate','placeholder'=>'Nome da Disciplina'])!!}
 
             <label>Tipo</label>
-            {!! Form::text('tipo', $tipos,null,['class'=>'input-field','required'=>""])!!}
+            {!! Form::select('tipo', $tipos,null,['class'=>'input-field','required'=>""])!!}
 
             {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!} 
+              {!!Form::close()!!}
         </div>
     </div>
-
-    {!!Form::close()!!}
+  
 </div>
-<script type="text/javascript">
-    //<![CDATA[
-    window.onload = function () {
-        $(document).ready(function () {
-            $('select').material_select();
-        });
-    }//]]> 
 
-</script>
+@endsection
+
+@section('scripts')
+<script src="{{url("assets/disciplina/js/index.js")}}" type="text/javascript"></script>
 @endsection

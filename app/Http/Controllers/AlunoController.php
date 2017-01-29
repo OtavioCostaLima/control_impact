@@ -17,8 +17,6 @@ class AlunoController extends Controller {
     }
 
     public function index() {
-
-      //  var_dump($this->a->find(1)->alunos);
         $alunos = $this->aluno->all();
         $title = 'Pagina Aluno';
         return view('aluno.index', compact('alunos', 'title'));

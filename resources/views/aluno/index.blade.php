@@ -6,6 +6,7 @@
  	<h1>Hello @{{name}}</h1>
 </div>
 @foreach($alunos as $aluno)
+{{$aluno->nome}}
 {{$aluno->familia->nome_pai}}
 @endforeach
 @endsection
